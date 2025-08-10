@@ -16,14 +16,13 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.automacent.fwk.enums.BrowserId;
 import com.automacent.fwk.exceptions.SetupFailedFatalException;
 import com.automacent.fwk.reporting.Logger;
 
-import io.github.bonigarcia.wdm.config.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.config.DriverManagerType;
 
 /**
  * Driver object holding {@link WebDriver} instances for Selenium Web Tests
@@ -299,11 +298,10 @@ public class Driver {
 	public void startDriver(DriverManagerType driverManagerType) {
 		try {
 			if (driverManagerType.name().equals(DriverManagerType.IEXPLORER.name())) {
-				DesiredCapabilities capab = new DesiredCapabilities();
-				capab.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-				capab.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
-				capab.setCapability(InternetExplorerDriver.ENABLE_PERSISTENT_HOVERING, false);
-				InternetExplorerOptions ieOptions = new InternetExplorerOptions(capab);
+				InternetExplorerOptions ieOptions = new InternetExplorerOptions();
+				ieOptions.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+				ieOptions.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
+				ieOptions.setCapability(InternetExplorerDriver.ENABLE_PERSISTENT_HOVERING, false);
 				if (ieDriverLocation == null) {
 					WebDriverManager.getInstance(DriverManagerType.IEXPLORER).setup();
 					_logger.info("Using ieDriver from framework");

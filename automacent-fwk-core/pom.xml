@@ -38,7 +38,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>aspectj-maven-plugin</artifactId>
-				<version>1.14.0</version>
+				<version>1.15.0</version>
 				<executions>
 					<execution>
 						<goals>
@@ -48,9 +48,9 @@
 				</executions>
 				<configuration>
 					<Xlint>ignore</Xlint>
-					<complianceLevel>11</complianceLevel>
-					<source>11</source>
-					<target>11</target>
+					<complianceLevel>16</complianceLevel>
+					<source>16</source>
+					<target>16</target>
 				</configuration>
 			</plugin>
 		</plugins>

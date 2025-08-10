@@ -13,8 +13,8 @@ import org.testng.IMethodInterceptor;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestContext;
+import org.testng.ITestListener;
 import org.testng.ITestResult;
-import org.testng.TestListenerAdapter;
 import org.testng.TestNGException;
 
 import com.automacent.fwk.annotations.StepsAndPagesProcessor;
@@ -43,8 +43,7 @@ import io.github.bonigarcia.wdm.config.DriverManagerType;
  * @author sighil.sivadas
  *
  */
-public class AutomacentListener extends TestListenerAdapter
-		implements IInvokedMethodListener, IExecutionListener, IMethodInterceptor, ISuiteListener {
+public class AutomacentListener implements ITestListener, IInvokedMethodListener, IExecutionListener, IMethodInterceptor, ISuiteListener {
 
 	private static final Logger _logger = Logger.getLogger(AutomacentListener.class);
 
@@ -62,7 +61,7 @@ public class AutomacentListener extends TestListenerAdapter
 		_logger.debug("Starting timekeeper " + IterationManager.getManager().getElapsedTimeInMilliSeconds());
 		LauncherClientManager.getManager().enableClient();
 		LauncherClientManager.getManager().startTest(testContext);
-		super.onStart(testContext);
+		// TestListenerAdapter.onStart() removed in TestNG 7.x
 	}
 
 	private void setDefaultParameters(Map<String, String> parameters, String key, String defaultValue) {
@@ -158,7 +157,7 @@ public class AutomacentListener extends TestListenerAdapter
 			ExecutionLogManager.logTestSkip(testResult);
 		else
 			ExecutionLogManager.logListenerFailure(testResult);
-		super.onTestFailure(testResult);
+		// TestListenerAdapter.onTestFailure() removed in TestNG 7.x
 	}
 
 	/**
@@ -171,21 +170,10 @@ public class AutomacentListener extends TestListenerAdapter
 				: testResult.getThrowable();
 		testResult.setThrowable(throwable);
 		ExecutionLogManager.logTestSkip(testResult);
-		super.onTestSkipped(testResult);
+		// TestListenerAdapter.onTestSkipped() removed in TestNG 7.x
 	}
 
-	/**
-	 * Override method for onConfigurationSkip in the TestNG library. Override is
-	 * done to log proper failure
-	 */
-	@Override
-	public void onConfigurationSkip(ITestResult testResult) {
-		Throwable throwable = testResult.getThrowable() == null ? new TestOrConfigurationSkipException()
-				: testResult.getThrowable();
-		testResult.setThrowable(throwable);
-		ExecutionLogManager.logTestSkip(testResult);
-		super.onConfigurationSkip(testResult);
-	}
+
 
 	/**
 	 * Override method for onFinish in the TestNG library. Override is done to log
@@ -197,7 +185,7 @@ public class AutomacentListener extends TestListenerAdapter
 		ExecutionLogManager.logIterationDetails();
 		ReportingTools.wipeScreenshotEntryInReports();
 		LauncherClientManager.getManager().stopTest();
-		super.onFinish(testContext);
+		// TestListenerAdapter.onFinish() removed in TestNG 7.x
 	}
 
 	@Override

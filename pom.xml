@@ -44,20 +44,20 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<webdriver.version>4.15.0</webdriver.version>
-		<webdrivermanager.version>5.5.3</webdrivermanager.version>
-		<aspectj.version>1.9.9.1</aspectj.version>
-		<jsch.version>0.1.53</jsch.version>
-		<commons.io.version>2.7</commons.io.version>
-		<testng.version>7.8.0</testng.version>
+		<webdriver.version>4.20.0</webdriver.version>
+		<webdrivermanager.version>5.8.0</webdrivermanager.version>
+		<aspectj.version>1.9.23</aspectj.version>
+		<jsch.version>0.1.55</jsch.version>
+		<commons.io.version>2.16.1</commons.io.version>
+		<testng.version>7.10.1</testng.version>
 		<xml.apis.version>1.4.01</xml.apis.version>
-		<log4j.verson>2.17.1</log4j.verson>
-		<springframework.version>5.3.14</springframework.version>
-		<jackson.version>2.12.2</jackson.version>
+		<log4j.verson>2.24.1</log4j.verson>
+		<springframework.version>6.2.2</springframework.version>
+		<jackson.version>2.18.1</jackson.version>
 		<reportng.version>1.1.4</reportng.version>
-		<guice.version>4.2.0</guice.version>
+		<guice.version>7.0.0</guice.version>
 		<commons.lang.version>2.3</commons.lang.version>
-		<commons-lang3-version>3.7</commons-lang3-version>
+		<commons-lang3-version>3.15.0</commons-lang3-version>
 	</properties>
 
 	<modules>
@@ -178,8 +178,31 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>31.0.1-jre</version>
+			<version>33.0.0-jre</version>
 		</dependency>
+		
+		<!-- Modern HTTP Client -->
+		<dependency>
+			<groupId>org.apache.httpcomponents.client5</groupId>
+			<artifactId>httpclient5</artifactId>
+			<version>5.3.1</version>
+		</dependency>
+		
+		<!-- Modern JSON Processing -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		
+		<!-- Modern Date/Time API -->
+		<dependency>
+			<groupId>org.threeten</groupId>
+			<artifactId>threeten-extra</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+		
+
 	</dependencies>
 
 	<build>
@@ -187,17 +210,20 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
+				<version>3.13.0</version>
 				<configuration>
-					<source>11</source>
-					<target>11</target>
+					<source>16</source>
+					<target>16</target>
 					<useIncrementalCompilation>false</useIncrementalCompilation>
+					<compilerArgs>
+						<arg>-parameters</arg>
+					</compilerArgs>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.6.7</version>
+				<version>1.6.13</version>
 				<extensions>true</extensions>
 				<configuration>
 					<serverId>ossrh</serverId>
@@ -208,7 +234,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5.3</version>
+				<version>3.1.0</version>
 				<configuration>
 					<localCheckout>true</localCheckout>
 					<pushChanges>false</pushChanges>
@@ -264,7 +290,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>3.5.0</version>
+						<version>3.6.3</version>
 						<executions>
 							<execution>
 								<id>attach-javadocs</id>

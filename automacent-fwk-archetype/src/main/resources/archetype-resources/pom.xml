@@ -10,41 +10,42 @@
 	<name>${artifactId}</name>
 	<url>https://automacent.com</url>
 
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<failIfNoTests>true</failIfNoTests>
-	<skipTests>false</skipTests>
-	<automacent.loglevel>INFO</automacent.loglevel>
-	<automacent.listeners></automacent.listeners>
-	<automacent.reportdir>${basedir}${file.separator}target${file.separator}Reports</automacent.reportdir>
-	<automacent.testsuites></automacent.testsuites>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<failIfNoTests>true</failIfNoTests>
+		<skipTests>false</skipTests>
+		<automacent.loglevel>INFO</automacent.loglevel>
+		<automacent.listeners></automacent.listeners>
+		<automacent.reportdir>${basedir}${file.separator}target${file.separator}Reports</automacent.reportdir>
+		<automacent.testsuites></automacent.testsuites>
 
-	<!-- Framework Level Parameters -->
-	<automacent.launcherClients></automacent.launcherClients>
-	<automacent.runName></automacent.runName>
-	<automacent.batchNumber></automacent.batchNumber>
-	<automacent.repeatMode>OFF</automacent.repeatMode>
-	<automacent.testDurationInSeconds>0</automacent.testDurationInSeconds>
-	<automacent.invocationCount>0</automacent.invocationCount>
-	<automacent.delayBetweenIterationInSeconds>0</automacent.delayBetweenIterationInSeconds>
-	<automacent.timeoutInSeconds>20</automacent.timeoutInSeconds>
-	<automacent.slowdownDurationInSeconds>0</automacent.slowdownDurationInSeconds>
-	<automacent.retryMode>OFF</automacent.retryMode>
-	<automacent.recoveryClasses></automacent.recoveryClasses>
-	<automacent.ieDriverLocation></automacent.ieDriverLocation>
-	<automacent.chromeDriverLocation></automacent.chromeDriverLocation>
-	<automacent.geckoDriverLocation></automacent.geckoDriverLocation>
-	<automacent.scriptTimeoutInSeconds>300</automacent.scriptTimeoutInSeconds>
-	<automacent.pageLoadTimeoutInSeconds>300</automacent.pageLoadTimeoutInSeconds>
-	<automacent.socketTimeoutInSeconds>300</automacent.socketTimeoutInSeconds>
-	<automacent.browser>CHROME</automacent.browser>
-	<automacent.debuggerAddress></automacent.debuggerAddress>
-	<automacent.downloadLocation></automacent.downloadLocation>
-	<automacent.screenshotType>BROWSER_SCREENSHOT</automacent.screenshotType>
-	<automacent.screenshotMode>ON_FAILURE</automacent.screenshotMode>
-	<automacent.screenshotModeForIteration>LAST_ITERATION</automacent.screenshotModeForIteration>
-	<automacent.baseUrl></automacent.baseUrl>
-	<!-- Global test Parameters -->
-</properties>
+		<!-- Framework Level Parameters -->
+		<automacent.launcherClients></automacent.launcherClients>
+		<automacent.runName></automacent.runName>
+		<automacent.batchNumber></automacent.batchNumber>
+		<automacent.repeatMode>OFF</automacent.repeatMode>
+		<automacent.testDurationInSeconds>0</automacent.testDurationInSeconds>
+		<automacent.invocationCount>0</automacent.invocationCount>
+		<automacent.delayBetweenIterationInSeconds>0</automacent.delayBetweenIterationInSeconds>
+		<automacent.timeoutInSeconds>20</automacent.timeoutInSeconds>
+		<automacent.slowdownDurationInSeconds>0</automacent.slowdownDurationInSeconds>
+		<automacent.retryMode>OFF</automacent.retryMode>
+		<automacent.recoveryClasses></automacent.recoveryClasses>
+		<automacent.ieDriverLocation></automacent.ieDriverLocation>
+		<automacent.chromeDriverLocation></automacent.chromeDriverLocation>
+		<automacent.geckoDriverLocation></automacent.geckoDriverLocation>
+		<automacent.scriptTimeoutInSeconds>300</automacent.scriptTimeoutInSeconds>
+		<automacent.pageLoadTimeoutInSeconds>300</automacent.pageLoadTimeoutInSeconds>
+		<automacent.socketTimeoutInSeconds>300</automacent.socketTimeoutInSeconds>
+		<automacent.browser>CHROME</automacent.browser>
+		<automacent.debuggerAddress></automacent.debuggerAddress>
+		<automacent.downloadLocation></automacent.downloadLocation>
+		<automacent.screenshotType>BROWSER_SCREENSHOT</automacent.screenshotType>
+		<automacent.screenshotMode>ON_FAILURE</automacent.screenshotMode>
+		<automacent.screenshotModeForIteration>LAST_ITERATION</automacent.screenshotModeForIteration>
+		<automacent.baseUrl></automacent.baseUrl>
+		<!-- Global test Parameters -->
+	</properties>
 
 	<repositories>
 		<repository>
@@ -114,17 +115,20 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>3.13.0</version>
 				<configuration>
-					<source>11</source>
-					<target>11</target>
+					<source>16</source>
+					<target>16</target>
+					<compilerArgs>
+						<arg>-parameters</arg>
+					</compilerArgs>
 				</configuration>
 			</plugin>
 
 			<plugin>
-				<groupId>com.github.m50d</groupId>
+				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>aspectj-maven-plugin</artifactId>
-				<version>1.11.1</version>
+				<version>1.15.0</version>
 				<configuration>
 					<aspectLibraries>
 						<aspectLibrary>
@@ -138,7 +142,7 @@
 							<artifactId>testng</artifactId>
 						</weaveDependency>
 					</weaveDependencies>
-					<complianceLevel>11</complianceLevel>
+					<complianceLevel>16</complianceLevel>
 					<showWeaveInfo>false</showWeaveInfo>
 					<verbose>false 22</verbose>
 					<Xlint>ignore</Xlint>
@@ -157,7 +161,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M4</version>
+				<version>3.2.5</version>
 				<configuration>
 					<failIfNoTests>${failIfNoTests}</failIfNoTests>
 					<skipTests>${skipTests}</skipTests>
